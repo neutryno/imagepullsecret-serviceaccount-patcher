@@ -30,8 +30,8 @@ kubectl -n kube-system patch secret <SECRET_NAME_2> -p '{"metadata": {"annotatio
 4. Add your secrets' names to the `REGISTRY_SECRET_NAMES` environment variable in `deployment/deployment.yaml`. 
 5. Install neutryno/serviceaccount-patcher
 ```bash
-kubectl apply -f deployment/deployment.yaml
-kubectl apply -f deployment/rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/neutryno/imagepullsecret-serviceaccount-patcher/master/deployment/rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/neutryno/imagepullsecret-serviceaccount-patcher/master/deployment/deployment.yaml
 ```
 
 ## Build
