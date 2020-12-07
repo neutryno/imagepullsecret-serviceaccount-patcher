@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serviceaccount-patcher
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/name: serviceaccount-patcher
+    app.kubernetes.io/instance: patcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: serviceaccount-patcher
+      app.kubernetes.io/instance: patcher
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: serviceaccount-patcher
+        app.kubernetes.io/instance: patcher
+    spec:
+      serviceAccountName: serviceaccount-patcher
+      securityContext: {}
+      containers:
+      - name: serviceaccount-patcher
+        securityContext: {}
+        image: neutryno/serviceaccount-patcher:latest
+        imagePullPolicy: Always
+        args: []
+        env:
+        - name: REGISTRY_SECRET_NAMES
+          value: "registry-secret-1,registry-secret-2"
+        resources: {}
