@@ -24,7 +24,7 @@ spec:
       - name: imagepullsecret-serviceaccount-patcher
         securityContext: {}
         image: neutryno/imagepullsecret-serviceaccount-patcher:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         args: []
         env:
         - name: REGISTRY_SECRET_NAMES
