@@ -28,5 +28,5 @@ spec:
         args: []
         env:
         - name: REGISTRY_SECRET_NAMES
-          value: "registry-secret-1,registry-secret-2"
+          value: "" # This must be filled in for ips-sa-p to function; see README
         resources: {}
