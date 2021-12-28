@@ -50,7 +50,7 @@ func main() {
 		}
 
 		for _, sa := range serviceAccounts.Items {
-			log.WithField("serviceaccount", sa.Name).WithField("namesapce", sa.Namespace).
+			log.WithField("serviceaccount", sa.Name).WithField("namespace", sa.Namespace).
 				Debug("Processing ServiceAccount")
 
 			for _, privateReg := range privateRegistries {
@@ -58,12 +58,12 @@ func main() {
 
 				if includeImagePullSecret(&sa, privateReg.name) {
 					log.WithField("serviceaccount", sa.Name).
-						WithField("namesapce", sa.Namespace).
+						WithField("namespace", sa.Namespace).
 						WithField("imagePullSecrets", sa.ImagePullSecrets).
 						Debug("ServiceAccount has ImagePullSecrets")
 				} else {
 					log.WithField("serviceaccount", sa.Name).
-						WithField("namesapce", sa.Namespace).
+						WithField("namespace", sa.Namespace).
 						WithField("imagePullSecret", privateReg.name).
 						Info("ServiceAccount does not have ImagePullSecret")
 
@@ -75,7 +75,7 @@ func main() {
 					result, err := client.CoreV1().ServiceAccounts(sa.Namespace).
 						Patch(context.TODO(), sa.Name, types.StrategicMergePatchType, patch, metav1.PatchOptions{})
 					log.WithField("serviceaccount", result.Name).
-						WithField("namesapce", sa.Namespace).
+						WithField("namespace", sa.Namespace).
 						WithField("imagePullSecrets", result.ImagePullSecrets).
 						Info("ServiceAccount patched")
 					if err != nil {
