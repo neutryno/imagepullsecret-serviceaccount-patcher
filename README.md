@@ -36,6 +36,5 @@ kubectl apply -f https://raw.githubusercontent.com/neutryno/imagepullsecret-serv
 
 ## Build
 ```bash
-GOOS=linux go build -o ./dist/app .
-docker build . -t neutryno/imagepullsecret-serviceaccount-patcher
+docker buildx build . -t neutryno/imagepullsecret-serviceaccount-patcher --platform linux/amd64,linux/arm64 --no-cache
 ```

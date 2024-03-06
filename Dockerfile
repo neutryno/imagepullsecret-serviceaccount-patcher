@@ -1,4 +1,8 @@
+FROM golang:latest
+WORKDIR /src
+COPY ./ /src
+RUN GOOS=linux go build -o ./dist/app .
+
 FROM debian
-LABEL MAINTAINER="Thorsten Hersam <thorsten.hersam@neutryno.de>"
-COPY ./dist/app /app
+COPY --from=0 /src/dist/app /app
 ENTRYPOINT /app
