@@ -1,8 +1,8 @@
-FROM golang:latest
+FROM golang:latest AS builder
 WORKDIR /src
 COPY ./ /src
-RUN GOOS=linux go build -o ./dist/app .
+RUN CGO_ENABLED=0 GOOS=linux go build -o ./dist/app .
 
-FROM debian
-COPY --from=0 /src/dist/app /app
+FROM scratch AS runtime
+COPY --from=builder /src/dist/app /app
 ENTRYPOINT /app
