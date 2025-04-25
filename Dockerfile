@@ -1,4 +1,4 @@
-FROM docker.io/library/golang:latest
+FROM docker.io/library/golang:1.24.2
 WORKDIR /src
 COPY ./ /src
 RUN GOOS=linux go build -o ./dist/app .
