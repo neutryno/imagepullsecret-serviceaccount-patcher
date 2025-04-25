@@ -1,3 +1,9 @@
+# Notice: Not Actively Maintained
+This project is no longer actively maintained.
+No further updates, bug fixes, or support are planned.
+Please consider this when deciding to use or contribute to this project.
+Feel free to fork & use this code as you see fit.
+
 # ImagePullSecret Service Account Patcher
 
 Simple Go application that takes to the Kubernetes API to add (multiple) `ImagePullSecrets` to all 
